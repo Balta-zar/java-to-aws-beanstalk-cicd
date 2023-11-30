@@ -28,9 +28,10 @@ jobs:
         distribution: 'temurin'        
         cache: gradle
     - name: Build with Gradle
-      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-      with:
-        arguments: clean build -x test --stacktrace -Penv=aws
+      run: ./gradlew clean bootJar
+      # uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+      # with:
+      # arguments: clean build -x test --stacktrace -Penv=aws
     - name: Upload JAR
       # We upload to reuse the same jar in the next job.
       uses: actions/upload-artifact@v2
@@ -38,7 +39,8 @@ jobs:
         # Name of artifact
         name: stage-web.jar
         # Relative path to the jar file
-        path: web/build/libs/web.jar
+        # path: web/build/libs/web.jar
+        path: build/libs/web.jar
         
   deploy:
     needs: build
