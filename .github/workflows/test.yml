@@ -40,7 +40,7 @@ jobs:
         name: stage-web.jar
         # Relative path to the jar file
         # path: web/build/libs/web.jar
-        path: build/libs/web.jar
+        path: build/libs/0.0.1-SNAPSHOT.jar
         
   deploy:
     needs: build
@@ -66,4 +66,4 @@ jobs:
           environment_name: dev-env #Environment name we created in Elastic BeanStalk
           version_label: ${{github.SHA}}
           region: us-east-2 #VERY IMPORTANT: AWS Region where initially Applciation was created in AWS EBS. We created in us-east-1 which is N-Virginia
-          deployment_package: web.jar #download artifacts from the previous job
+          deployment_package: 0.0.1-SNAPSHOT.jar #download artifacts from the previous job
